@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+    height: auto;
+  }
+
+  th.mat-sort-header-sorted {
+    color: black;
+    
+  }
+  .w-75{
+    width: 75px;
+}
+
+.w-100{
+    width: 100px;
+}
+ 
+ 
+  .filter__form{
+    width: 100%;
+   display: flex;
+   flex-wrap: wrap;
+ }
+ .filter__form .form-group{
+   margin: 0 10px;
+   font-size: 14px;
+ }
+ .primary{
+   background: orange;
+   color: white;
+ }
+
+ .ErroConnection{
+  text-align: center;
+
+  color:crimson;
+}
+ 
+ 
