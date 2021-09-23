@@ -1,0 +1,106 @@
+
+ <div fxLayout="column"    fxLayoutGap="50px" fxLayoutAlign="center center" >
+
+    <div class="child-1" *ngIf="isLoadedStateCase()">
+      <form   [formGroup]="filterForm">
+        <div mat-dialog-content class="filter__form">
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="firstName" placeholder="name">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="lastName" placeholder="lastName">
+            </mat-form-field>
+          </div>
+  
+          
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="phone" placeholder="phone">
+            </mat-form-field>
+          </div>
+  
+  
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="email" placeholder="email">
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <mat-form-field>
+              <mat-label>Status</mat-label>
+              <mat-select formControlName="status" multiple>
+                <mat-option *ngFor="let sts of formationStsList" [value]="sts">{{sts}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+    
+          </div>
+          <div class="modal-inforce__footer">
+            <button type="submit" mat-button (click)="reset()" class="primary">reset</button>
+          </div>
+        </div>
+  </form>
+    </div>
+    <div class="child-2"  [hidden]="!isLoadedStateCase()"   fxFlexFill >
+      <mat-table   [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header > id </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+          <mat-header-cell  *matHeaderCellDef mat-sort-header > firstName </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.firstName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+          <mat-header-cell *matHeaderCellDef mat-sort-header > lastName </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.lastName}} </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef mat-sort-header > phone </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
+        </ng-container>
+  
+  
+  
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header  > email </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="password">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header  > password </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.password}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <mat-header-cell *matHeaderCellDef  mat-sort-header  > status </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.status}} </mat-cell>
+        </ng-container>
+  
+   
+  
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+         
+      </mat-table>
+    
+     
+      <mat-paginator   [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons> </mat-paginator>
+  
+      
+  
+    </div>
+     <div class="child-3" *ngIf="isLoadingStateCase()"   fxLayoutAlign="center center" fxFlexFill >
+      <mat-spinner></mat-spinner>
+     </div>
+     <div class="child-4" *ngIf="isErrorStateCase()" fxLayoutAlign="center center" fxFlexFill >
+       <p>Error get api data from server , verify the connection </p>
+     </div>
+    </div>
+  
+  
+  
+   
+  
+   

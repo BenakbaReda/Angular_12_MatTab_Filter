@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+
+import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -9,14 +10,13 @@ import { DataState } from 'src/app/services/base/Data';
 import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { environment } from 'src/environments/environment';
- 
 
 @Component({
-  selector: 'app-new-ihm',
-  templateUrl: './new-ihm.component.html',
-  styleUrls: ['./new-ihm.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class NewIHMComponent implements  OnInit, AfterViewInit {
+export class UsersComponent implements OnInit, AfterViewInit {
   usersState: DataState = DataState.LOADING;
   // filter values 
   filterValues = { firstName: '',lastName: '',phone:'', email: '',status: [],}

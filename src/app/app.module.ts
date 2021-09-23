@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToastrModule } from 'ngx-toastr';
+import { UsersComponent } from './components/users/users.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NewIHMComponent
+    NewIHMComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

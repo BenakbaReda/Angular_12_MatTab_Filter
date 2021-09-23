@@ -4,7 +4,7 @@ var faker = require('faker');
 const fs = require('fs');
 var database = { Users: [] };
 
-for (var i=1; i<=150; i++) {
+for (var i=1; i<=1500; i++) {
     database.Users.push(
         {
                 id: i  ,

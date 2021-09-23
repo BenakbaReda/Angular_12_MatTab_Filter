@@ -38,12 +38,12 @@
   
         </div>
         <div class="modal-inforce__footer">
-          <button type="submit" mat-button   class="primary">apply</button>
+          <button type="submit" mat-button (click)="reset()" class="primary">reset</button>
         </div>
       </div>
 </form>
   </div>
-  <div class="child-2" *ngIf="isLoadedStateCase()"fxFlexFill >
+  <div class="child-2"  [hidden]="!isLoadedStateCase()"   fxFlexFill >
     <mat-table   [dataSource]="dataSource" matSort class="mat-elevation-z8" >
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef mat-sort-header > id </mat-header-cell>
@@ -88,7 +88,7 @@
    
     <mat-paginator   [pageSizeOptions]="[5, 10, 20]"   showFirstLastButtons> </mat-paginator>
 
-    <!-- <p *ngIf="isErrServer" class="ErroConnection"> erreur de connection serveur </p> -->
+    
 
   </div>
    <div class="child-3" *ngIf="isLoadingStateCase()"   fxLayoutAlign="center center" fxFlexFill >
