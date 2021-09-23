@@ -6,7 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { FormationSts, User } from 'src/app/models/user';
 import { DataState } from 'src/app/services/base/Data';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { environment } from 'src/environments/environment';
  
 
 @Component({
@@ -50,13 +52,14 @@ export class NewIHMComponent implements OnInit {
   get status() { return this.filterForm.get('status'); }
 
   //constructor
-  constructor(private usersService: UserService) { 
+  constructor(private usersService: UserService,private notifyService : NotificationService) { 
     this.dataSource.filterPredicate = this.createFilter();
   }
   //On Init component
   ngOnInit(): void {
     this.InitFilterSubscribe();
     this.usersState = DataState.LOADING; 
+    this.notifyService.showInfo("waite connection to server ", environment.api.baseUrl +'/users');
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort; 
     this.dataArray = this.usersService.GetAll();
@@ -65,11 +68,12 @@ export class NewIHMComponent implements OnInit {
         console.log(res);
         this.dataSource.data=res;
         this.usersState = DataState.LOADED; 
+        this.notifyService.showSuccess("Data shown successfully from", environment.api.baseUrl +'/users');
         },
       (err) => {
         console.log(err);
          this.usersState = DataState.ERROR; 
-        
+         this.notifyService.showError("Data get Error from", environment.api.baseUrl +'/users');
         }
       );  
   }
@@ -126,4 +130,7 @@ export class NewIHMComponent implements OnInit {
   isLoadingStateCase(): boolean { return this.usersState == DataState.LOADING; } 
   isLoadedStateCase(): boolean { return this.usersState == DataState.LOADED; } 
   isErrorStateCase(): boolean { return this.usersState == DataState.ERROR; } 
+
+ 
+  
 }
